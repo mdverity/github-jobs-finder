@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useEffect, useReducer } from 'react'
 
-const BASE_URL = 'https://jobs.github.com/positions.json'
+const BASE_URL =
+  'https://cors-proxy.htmldriven.com/?url=https://jobs.github.com/positions.json'
 
 const ACTIONS = {
   MAKE_REQUEST: 'make-request',
