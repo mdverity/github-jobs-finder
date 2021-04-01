@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { useEffect, useReducer } from 'react'
 
-const BASE_URL =
-  'https://cors-proxy.htmldriven.com/?url=https://jobs.github.com/positions.json'
+const BASE_URL = 'https://jobs.github.com/positions.json'
 
 const ACTIONS = {
   MAKE_REQUEST: 'make-request',
@@ -47,6 +46,9 @@ export default function useFetchJobs(params, page) {
         // Passing markdown and page as default parameters.
         // The rest will be specified upon request (full time, location, etc.).
         params: { markdown: true, page: page, ...params },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       })
       .then((res) => {
         // Send a dispatch to our reducer to update the jobs in our state.
@@ -66,6 +68,9 @@ export default function useFetchJobs(params, page) {
       .get(BASE_URL, {
         cancelToken: cancelToken2.token,
         params: { markdown: true, page: page + 1, ...params },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       })
       .then((res) => {
         dispatch({
