@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Badge, Button, Card, Collapse, Modal } from 'react-bootstrap'
+import { Badge, Button, Card, Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 
 // job: {
