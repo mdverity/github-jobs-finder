@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
-import { Badge, Button, Card, Collapse } from 'react-bootstrap'
+import { Badge, Button, Card, Collapse, Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
+
+// job: {
+//   id
+//   type
+//   url
+//   created_at
+//   company
+//   company_url
+//   location
+//   title
+//   description
+//   how_to_apply
+//   company_logo
+// }
 
 export default function Job({ job }) {
   const [open, setOpen] = useState(false)
@@ -41,11 +55,30 @@ export default function Job({ job }) {
             {open ? 'Hide Details' : 'View Details'}
           </Button>
         </Card.Text>
-        <Collapse in={open}>
-          <div className='mt-4'>
+        <Modal
+          scrollable
+          centered
+          show={open}
+          onHide={() => setOpen((prev) => !prev)}
+          size='xl'
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{job.title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <ReactMarkdown source={job.description} />
-          </div>
-        </Collapse>
+            <hr />
+            <ReactMarkdown source={job.how_to_apply} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant='secondary'
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Card.Body>
     </Card>
   )
